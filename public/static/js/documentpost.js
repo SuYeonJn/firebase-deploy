@@ -57,11 +57,12 @@ function WeightChange(a){
 
   const db = getFirestore();
   const colRef = collection(db, 'datasets');
-  var postid = localStorage.getItem("postid");
+  var postid = localStorage.getItem("postid1");
 
   onSnapshot(colRef, (snapshot) => {
     snapshot.docs.forEach((doc) => {
-      console.log(doc.id)
+      console.log(doc.id);
+      console.log(postid);
       if(doc.id===postid){
         console.log("filling data");
         document.getElementById('title').value = doc.data().제목;

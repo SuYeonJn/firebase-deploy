@@ -25,6 +25,11 @@ const auth = getAuth(app);
 const dbRef = ref(getDatabase(app));
 
 onAuthStateChanged(auth, (user) => {
+  if(user==null){
+    alert("You are not a member! Please sign up.");
+    location.href = "index.html";
+  }
+  else{
   const uid = user.uid;
 
   get(child(dbRef, `users/` + uid)).then((snapshot) => {
@@ -38,11 +43,11 @@ onAuthStateChanged(auth, (user) => {
           location.href = "documentuser.html";
         }
       } else {
-        alert("You are not a member! Please sign up.");
-        location.href = "index.html";
+        
       }
     } else {
       console.log("No data");
     }
   });
+  }
 });
